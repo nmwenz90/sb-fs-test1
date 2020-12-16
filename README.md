@@ -82,6 +82,14 @@ scripts necessary to successfully clone down your code and run it on
 Please provide a README, if necessary to document how to prepare the development
 environment and run the application.
 
+### Hints
+
+#### Hint 1
+
+The `little-media-box` module is fully documented to `jsdoc` specifications. It
+should be relatively easy and painless to generate documentation for the entire
+module and its class libraries, if desired.
+
 ## Have Fun!
 
 Please feel encouraged to have fun with this challenge. Your work will not be
