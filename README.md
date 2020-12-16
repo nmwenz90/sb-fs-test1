@@ -14,7 +14,7 @@ After unpacking the repository, `cd` into it and install the `npm`
 dependencies:
 
 ```sh
-$ cd sb-fs5-test
+$ cd sb-fs-test1
 $ npm install
 ```
 
@@ -36,7 +36,7 @@ $ node app.js
 Should yield the below results.
 
 ```sh
-Probe results for file at URI: file:///home/gwohl/code/storyboard/sb-fs5-test/example.wav
+Probe results for file at URI: file:///home/gwohl/code/storyboard/sb-fs-test1/example.wav
 
 
 File format...	 WAV / WAVE (Waveform Audio)
