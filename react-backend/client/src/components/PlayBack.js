@@ -23,22 +23,31 @@ export default function Playback() {
     // streaming example wav for now through cdn
     useEffect(() => {
         ref.current = new Tone.Player('https://res.cloudinary.com/dvwvkt7iq/video/upload/v1608428616/example_sjy4ui.wav').toDestination();
+        
     }, [ref]);
 
-    const handleclick = (e) => {
+    const playStopAudio = (e) => {
         e.preventDefault()
         if (pressed === false) {
             ref.current.volume.value = volValue
             ref.current.start()
-            setPressed(true);
+            setPressed(true);  
         }
-        else {
+        else{
             ref.current.stop()
             setPressed(false)
         }
     }
 
-    const handleChange = (e) => {
+    const restartAudio = (e) => {
+        e.preventDefault()
+        
+        ref.current.stop()
+        setPressed(false)
+
+    }
+
+    const handleVolumeChange = (e) => {
         setSliderValue(e.target.value);
         ref.current.volume.value = volValue;
         if(sliderValue <= 5) ref.current.mute = true;
@@ -46,17 +55,18 @@ export default function Playback() {
     }
 
     const checkPressed = pressed === false ? <IoPlayCircleOutline/> : <IoStopCircleOutline/> 
+
     return (
         <>
             <div className="playbackButtons">
-                <Button id="prev" value="prev" name="prevButton" ><IoPlaySkipBackCircleOutline/></Button>
-                <Button onClick={handleclick}className="play"value="play" name="playButton" >{
+                <Button id="prev" value="prev" name="prevButton" onClick={restartAudio}><IoPlaySkipBackCircleOutline/></Button>
+                <Button className="play"value="play" name="playButton" onClick={playStopAudio}>{
                     checkPressed
                     }</Button>
-                <Button id="next" value="next"  name="nextButton" ><IoPlaySkipForwardCircleOutline/></Button>
+                <Button id="next" value="next"  name="nextButton" onClick={restartAudio} ><IoPlaySkipForwardCircleOutline/></Button>
             </div>
             <div>
-                <IoVolumeOffOutline/><Slider min="0" max="100" value={sliderValue} onChange={handleChange}/><IoVolumeHigh/>
+                <IoVolumeOffOutline/><Slider min="0" max="100" value={sliderValue} onChange={handleVolumeChange}/><IoVolumeHigh/>
             </div>
         </>
     )
