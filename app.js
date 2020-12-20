@@ -1,4 +1,4 @@
-const info = require('./info')
+const info = require('./react-backend/info')
 
 info((error, audioTrack) => {
   if (error) console.error(error)
