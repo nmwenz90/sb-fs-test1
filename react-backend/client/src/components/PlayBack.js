@@ -41,7 +41,6 @@ export default function Playback() {
 
     const restartAudio = (e) => {
         e.preventDefault()
-        
         ref.current.stop()
         setPressed(false)
 
