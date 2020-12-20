@@ -37,7 +37,7 @@ I added playback and volume functionality to the app as well, currently did a qu
 
 I also created a couple unit test for some of the reusable components I made.
 
-Made a simple little UI as well with css styling.
+Made a UI Design as well with css styling.
 ### Finding Dependencies
 
 You can find dependencies in root folder that you cloned, react-backend and reactbackend/client for package.json files.
