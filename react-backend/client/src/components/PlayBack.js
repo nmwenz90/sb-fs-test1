@@ -1,5 +1,5 @@
-import Button from './shared/Button.js'
-import Slider from './shared/Slider.js'
+import { useState, useRef, useEffect } from 'react'
+import * as Tone from "tone";
 import { 
     IoPlayCircleOutline, 
     IoStopCircleOutline, 
@@ -9,18 +9,41 @@ import {
     IoVolumeOffOutline 
 } from "react-icons/io5";
 
-import { useState } from 'react'
+import { scale } from '../utilities/utilities.js'
+
+import Button from './shared/Button.js'
+import Slider from './shared/Slider.js'
 
 export default function Playback() {
-    const [pressed, setPressed] = useState(true)
+    const [pressed, setPressed] = useState(false)
+    const [sliderValue, setSliderValue] = useState(50)
+    const ref = useRef(null)
+    let volValue = scale(sliderValue, 0, 100, -36, 0)
+
+    useEffect(() => {
+        ref.current = new Tone.Player('https://res.cloudinary.com/dvwvkt7iq/video/upload/v1608428616/example_sjy4ui.wav').toDestination();
+    }, [ref]);
+
     const handleclick = (e) => {
         e.preventDefault()
-        console.log('clicked')
-        // e.target.value = 'stop'
-        setPressed(!pressed)
-        console.log('pressed')
+        if (pressed === false) {
+            ref.current.volume.value = volValue
+            ref.current.start()
+
+            setPressed(true);
+        }
+        else {
+            ref.current.stop()
+            setPressed(false)
+        }
     }
-    const checkPressed = pressed === true ? <IoPlayCircleOutline/> : <IoStopCircleOutline/> 
+
+    const handleChange = (e) => {
+        setSliderValue(e.target.value)
+        ref.current.volume.value = volValue
+    }
+
+    const checkPressed = pressed === false ? <IoPlayCircleOutline/> : <IoStopCircleOutline/> 
     return (
         <>
             <div className="playbackButtons">
@@ -31,7 +54,7 @@ export default function Playback() {
                 <Button id="next" value="next"  name="nextButton" ><IoPlaySkipForwardCircleOutline/></Button>
             </div>
             <div>
-                <IoVolumeOffOutline/><Slider min="0" max="100"/><IoVolumeHigh/>
+                <IoVolumeOffOutline/><Slider min="0" max="100" value={sliderValue} onChange={handleChange}/><IoVolumeHigh/>
             </div>
         </>
     )
