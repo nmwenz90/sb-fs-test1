@@ -7,7 +7,7 @@ import {
     IoPlaySkipBackCircleOutline, 
     IoVolumeHigh,
     IoVolumeOffOutline 
-} from "react-icons/io5";
+} from "react-icons/io5"; // icons
 
 import { scale } from '../utilities/utilities.js'
 
@@ -15,11 +15,12 @@ import Button from './shared/Button.js'
 import Slider from './shared/Slider.js'
 
 export default function Playback() {
-    const [pressed, setPressed] = useState(false)
+    const [pressed, setPressed] = useState(false) // trigger for when play icon is clicked
     const [sliderValue, setSliderValue] = useState(50)
-    const ref = useRef(null)
-    let volValue = scale(sliderValue, 0, 100, -48, 0)
+    const ref = useRef(null) //perists state of audio
+    let volValue = scale(sliderValue, 0, 100, -24, 0) // remaps the slider value to the volume value
 
+    // streaming example wav for now through cdn
     useEffect(() => {
         ref.current = new Tone.Player('https://res.cloudinary.com/dvwvkt7iq/video/upload/v1608428616/example_sjy4ui.wav').toDestination();
     }, [ref]);
