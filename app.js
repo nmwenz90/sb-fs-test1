@@ -1,9 +1,8 @@
-const info = require('./react-backend/info')
+const info = require('./react-backend/info.js')
 
 info((error, audioTrack) => {
   if (error) console.error(error)
   if (!audioTrack) console.error(new Error('Returned audio track is invalid!'))
-
   console.log(`Probe results for file at URI: ${audioTrack.source.uri}\n\n`)
 
   console.log('File format...\t', audioTrack.properties.format.format_long_name)
