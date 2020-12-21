@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react'
-import * as Tone from "tone";
+import { useState, useRef, useEffect } from 'react';
+import * as Tone from "tone"; //tone.js
 import { 
     IoPlayCircleOutline, 
     IoStopCircleOutline, 
@@ -9,20 +9,21 @@ import {
     IoVolumeOffOutline 
 } from "react-icons/io5"; // icons
 
-import { scale } from '../utilities/utilities.js'
+import { scale } from '../utilities/utilities.js';
 
-import Button from './shared/Button.js'
-import Slider from './shared/Slider.js'
+import Button from './shared/Button.js';
+import Slider from './shared/Slider.js';
 
 export default function Playback() {
+    const uri = 'https://res.cloudinary.com/dvwvkt7iq/video/upload/v1608428616/example_sjy4ui.wav';
     const [pressed, setPressed] = useState(false) // trigger for when play icon is clicked
-    const [sliderValue, setSliderValue] = useState(50)
-    const player = useRef(null) //perists state of audio in React
-    const volValue = scale(sliderValue, 0, 100, -24, 0) // remaps the slider value to the volume value
+    const [sliderValue, setSliderValue] = useState(50);
+    const player = useRef(null); //perists state of audio in React
+    const volValue = scale(sliderValue, 0, 100, -24, 0); // remaps the slider value to the volume value
 
     // streaming example wav for now through cdn
     useEffect(() => {
-        player.current = new Tone.Player('https://res.cloudinary.com/dvwvkt7iq/video/upload/v1608428616/example_sjy4ui.wav').toDestination(); 
+        player.current = new Tone.Player(uri).toDestination(); 
     }, [player]);
 
 

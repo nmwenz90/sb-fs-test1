@@ -14,7 +14,6 @@ export function formatSizeUnits(bytes){
     return bytes;
   }
 
-
   /**
    * 
    * @function scale Re-maps a number from one range to another
