@@ -37,6 +37,7 @@
   /* padding: 1vh, 0; */
   margin-left: 2vw;
   width: 18rem;
+  height: 18rem;
   border: 5px #F7F7F7 solid;
 }
 .metadataList > li {

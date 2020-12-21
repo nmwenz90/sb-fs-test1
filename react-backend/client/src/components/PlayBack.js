@@ -19,7 +19,7 @@ export default function Playback() {
     const [pressed, setPressed] = useState(false) // trigger for when play icon is clicked
     const [sliderValue, setSliderValue] = useState(50);
     const player = useRef(null); //perists state of audio in React
-    const volValue = scale(sliderValue, 0, 100, -24, 0); // remaps the slider value to the volume value
+    const volValue = scale(sliderValue, 0, 100, -48, 0); // remaps the slider value to the volume value
 
     // streaming example wav for now through cdn
     useEffect(() => {
