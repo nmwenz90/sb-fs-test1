@@ -17,44 +17,51 @@ import Slider from './shared/Slider.js'
 export default function Playback() {
     const [pressed, setPressed] = useState(false) // trigger for when play icon is clicked
     const [sliderValue, setSliderValue] = useState(50)
-    const ref = useRef(null) //perists state of audio
-    let volValue = scale(sliderValue, 0, 100, -24, 0) // remaps the slider value to the volume value
+    const player = useRef(null) //perists state of audio in React
+    const volValue = scale(sliderValue, 0, 100, -24, 0) // remaps the slider value to the volume value
 
     // streaming example wav for now through cdn
     useEffect(() => {
-        ref.current = new Tone.Player('https://res.cloudinary.com/dvwvkt7iq/video/upload/v1608428616/example_sjy4ui.wav').toDestination();
-        
-    }, [ref]);
+        player.current = new Tone.Player('https://res.cloudinary.com/dvwvkt7iq/video/upload/v1608428616/example_sjy4ui.wav').toDestination(); 
+    }, [player]);
+
 
     const playStopAudio = (e) => {
         e.preventDefault()
         if (pressed === false) {
-            ref.current.volume.value = volValue
-            ref.current.start()
+            player.current.volume.value = volValue;
+            player.current.start();
             setPressed(true);  
+            Tone.Transport.start()
+            
+            //Schedule to stop playback when time reaches the end
+            Tone.Transport.schedule(() => {
+                player.current.stop()
+                setPressed(false)
+                Tone.Transport.stop()
+            }, player.current.buffer.duration )
         }
+
         else{
-            ref.current.stop()
+            player.current.stop()
             setPressed(false)
+            Tone.Transport.stop()
         }
     }
 
     const restartAudio = (e) => {
         e.preventDefault()
-        ref.current.stop()
+        player.current.stop()
         setPressed(false)
-
     }
 
     const handleVolumeChange = (e) => {
         setSliderValue(e.target.value);
-        ref.current.volume.value = volValue;
-        if(sliderValue <= 5) ref.current.mute = true;
-        else ref.current.mute = false;
+        player.current.volume.value = volValue;
+        if(sliderValue <= 5) player.current.mute = true;
+        else player.current.mute = false;
     }
-
     const checkPressed = pressed === false ? <IoPlayCircleOutline/> : <IoStopCircleOutline/> 
-
     return (
         <>
             <div className="playbackButtons">

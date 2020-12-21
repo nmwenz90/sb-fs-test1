@@ -61,3 +61,8 @@
   width: 15vw;
 }
 
+.buttons:focus {
+  outline: none;
+  box-shadow: none;
+}
+
