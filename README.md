@@ -40,7 +40,7 @@ I added playback and volume functionality to the app as well, currently did a qu
 I made a UI Design as well with css styling.
 ### Finding Dependencies
 
-You can find dependencies in root folder that you cloned, react-backend and reactbackend/client for package.json files.
+You can find dependencies in root folder, react-backend and reactbackend/client for package.json files.
 ## This was Fun!
 
 I had fun making this hope it works well on your end!
