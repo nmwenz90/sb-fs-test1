@@ -29,15 +29,15 @@ $ cd ..
 $ npm start
 ```
 
-`npm start` runs the react server (localhost:3000) and the express server (localhost:3001/audiodata)
+`npm start` runs the react server [http://localhost:3000](http://localhost:3000) and the express api endpoint that generates info.js json [http://localhost:3001/audiodata](http://localhost:3001/audiodata)
 
 ### Additions
 
-I added playback and volume functionality to the app as well, currently did a quick design so the app wprobably looks best on the desktop. I utilized tone.js wih React hooks and a CDN to load the file.
+the audio file example.wav was moved to ```/react-backend/client/src/example.wav```
 
-I also created a couple unit test for some of the reusable components I made.
+I added playback and volume functionality to the app as well, currently did a quick design so the app wprobably looks best on the desktop. I also created a couple unit tests for some of the reusable components I made.
 
-Made a UI Design as well with css styling.
+I made a UI Design as well with css styling.
 ### Finding Dependencies
 
 You can find dependencies in root folder that you cloned, react-backend and reactbackend/client for package.json files.

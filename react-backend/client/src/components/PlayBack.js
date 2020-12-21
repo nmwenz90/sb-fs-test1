@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
+import wav from '../example.wav'
+
 import * as Tone from "tone"; //tone.js
 import { 
     IoPlayCircleOutline, 
@@ -14,8 +16,9 @@ import { scale } from '../utilities/utilities.js';
 import Button from './shared/Button.js';
 import Slider from './shared/Slider.js';
 
+
+
 export default function Playback() {
-    const uri = 'https://res.cloudinary.com/dvwvkt7iq/video/upload/v1608428616/example_sjy4ui.wav';
     const [pressed, setPressed] = useState(false) // trigger for when play icon is clicked
     const [sliderValue, setSliderValue] = useState(50);
     const player = useRef(null); //perists state of audio in React
@@ -23,16 +26,21 @@ export default function Playback() {
 
     // streaming example wav for now through cdn
     useEffect(() => {
-        player.current = new Tone.Player(uri).toDestination(); 
+        player.current = new Tone.Player(wav).toDestination(); 
     }, [player]);
+
+   
 
 
     const playStopAudio = (e) => {
         e.preventDefault()
         if (pressed === false) {
+            
             player.current.volume.value = volValue;
+
             player.current.start();
-            setPressed(true);  
+            setPressed(true); 
+            
             Tone.Transport.start()
             
             //Schedule to stop playback when time reaches the end

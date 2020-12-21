@@ -1,7 +1,7 @@
 const { AudioTrack, Source } = require('little-media-box')
 const path = require('path')
 
-const EXAMPLE_AUDIO_FILE_PATH = path.resolve(__dirname, '../example.wav')
+const EXAMPLE_AUDIO_FILE_PATH = path.resolve(__dirname, './client/src/example.wav')
 
 function main(cb) {
   const audioFile = new Source(EXAMPLE_AUDIO_FILE_PATH)
